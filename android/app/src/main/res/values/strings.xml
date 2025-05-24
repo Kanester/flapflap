@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">flapflap</string>
+    <string name="title_activity_main">flapflap</string>
+    <string name="package_name">com.knxtr.flap</string>
+    <string name="custom_url_scheme">com.knxtr.flap</string>
+</resources>
