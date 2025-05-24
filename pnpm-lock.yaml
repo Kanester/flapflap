@@ -27,9 +27,6 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^5.0.0
         version: 5.0.3(svelte@5.33.1)(vite@6.3.5(@types/node@22.15.21))
-      eruda:
-        specifier: ^3.4.1
-        version: 3.4.1
       svelte:
         specifier: ^5.0.0
         version: 5.33.1
@@ -546,9 +543,6 @@ packages:
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
-
-  eruda@3.4.1:
-    resolution: {integrity: sha512-RmaO5yD97URY/9Q0lye3cmmNPoXNKreeePIw7c/zllbscR92CjGFZFuQ70+0fLIvLcKW3Xha8DS8NFhmeNbEBQ==}
 
   esbuild@0.25.4:
     resolution: {integrity: sha512-8pgjLUcUjcgDg+2Q4NYXnPbo/vncAY4UmyaCm0jZevERqCHZIaWwdJHkf8XQtu4AxSKCdvrUbT0XUr1IdZzI8Q==}
@@ -1383,8 +1377,6 @@ snapshots:
   emoji-regex@9.2.2: {}
 
   env-paths@2.2.1: {}
-
-  eruda@3.4.1: {}
 
   esbuild@0.25.4:
     optionalDependencies:
