@@ -7,126 +7,8 @@
   let dpr: number;
   let width: number;
   let height: number;
-  
-  let lastTime = 0;
-  
-  let current = 0;
-  let next = 1;
-  
-  let scrollX = 0;
-  
-  const scrollSpeed = 10;
-  
-  let fadeProcess = 0;
-  const fadeDuration = 2;
-  
-  const switchInterval = 10;
-  let timeSinceSwitch = 0;
-  
-  let loadedBgImage: HTMLImageElement[] = [];
-  let loadedBaseImg: HTMLImageElement;
 
-  async function load(): Promise<void> {
-    const bgImages = Array.from({ length: 9 }, (_, i) => window.assets.hud(`bg/Background${i + 1}.png`));
-    
-    const baseImg = window.assets.hud(`bg/base.png`);
-    
-    const promises = bgImages.map((src) => {
-      return new Promise<HTMLImageElement>((resolve) => {
-        const img = new Image();
-        img.src = src;
-        img.onload = () => resolve(img);
-      });
-    });
-    
-    const basePromise = new Promise<HTMLImageElement>((resolve) => {
-      const img = new Image();
-      img.src = baseImg;
-      img.onload = () => resolve(img);
-    })
-
-    [loadedBgImage, loadedBaseImg] = await Promise.all([
-        Promise.all(promises),
-        basePromise
-      ]);
-  }
-
-  function drawBg(img: HTMLImageElement, x: number, alpha: number): void {
-    ctx.globalAlpha = alpha;
-
-    const imgW = img.width;
-    const imgH = img.height;
-
-    const scale = height / imgH;
-    const drawW = imgW * scale;
-    const drawH = height;
-
-    let drawX = x % drawW;
-    if (drawX > 0) drawX -= drawW;
-
-    ctx.drawImage(img, drawX, 0, drawW, drawH);
-    ctx.drawImage(img, drawX + drawW, 0, drawW, drawH);
-
-    ctx.globalAlpha = 1;
-  }
-
-  function drawBase(img: HTMLImageElement): void {
-    const imgW = img.width;
-    const imgH = img.height;
-
-    const scale = width / imgW;
-    const drawW = width;
-    const drawH = imgH * scale;
-    const y = height - drawH;
-
-    ctx.drawImage(img, 0, y, drawW, drawH);
-}
-
-  function draw(): void {
-    if (!loadedBgImage.length || !loadedBaseImg) return;
-    
-    ctx.clearRect(0, 0, width, height);
-
-    if (fadeProcess > 0) {
-      drawBg(loadedBgImage[current], scrollX, 1 - fadeProcess);
-      drawBg(loadedBgImage[next], scrollX, fadeProcess);
-    } else {
-      drawBg(loadedBgImage[current], scrollX, 1);
-    }
-    
-    drawBase(loadedBaseImg);
-  }
-
-  function update(dt: number): void {
-    if (!loadedBgImage.length) return;
-    
-    scrollX -= scrollSpeed * dt;
-
-    timeSinceSwitch += dt;
-
-    if (timeSinceSwitch >= switchInterval) {
-      fadeProcess += dt / fadeDuration;
-      if (fadeProcess >= 1) {
-        fadeProcess = 0;
-        current = next;
-        next = (next + 1) % loadedBgImage.length;
-        timeSinceSwitch = 0;
-      }
-    }
-  }
-
-  function loop(timestamp: number): void {
-    if (!lastTime) lastTime = timestamp;
-    const dt = (timestamp - lastTime) / 1000;
-
-    lastTime = timestamp;
-
-    update(dt);
-    draw();
-    requestAnimationFrame(loop);
-  }
-
-  async function init(): Promise<void> {
+  function init(): void {
     ctx = canvas.getContext("2d");
 
     if (!ctx) {
@@ -146,16 +28,6 @@
 
     ctx.imageSmoothingEnabled = false;
     ctx?.scale(dpr, dpr);
-    
-    window.windowSettings?.ctx.set(ctx);
-
-    await load();
-    
-    if (loadedBgImage.length === 0) {
-      console.error("No background image/s loaded");
-    }
-    
-    requestAnimationFrame(loop);
   }
 
   onMount(() => {
