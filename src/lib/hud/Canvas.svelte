@@ -133,11 +133,11 @@
       const checkAssets = setInterval(() => {
           if (window.assets) {
             clearInterval(checkAssets);
-            initCanvas();
+            init();
           }
       }, 50);
     } else {
-      initCanvas();
+      init();
     }
   });
 </script>
