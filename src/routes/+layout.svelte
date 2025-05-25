@@ -31,12 +31,6 @@
       },
     });
 
-    window.assets ??= Object.freeze({
-      entity: (p: string) => `assets/entity/${p}`,
-      hud: (p: string) => `assets/hud/${p}`,
-      sfx: (p: string) => `assets/sfx/${p}`,
-    });
-
     window.gameSettings ??= {
       theme: "light",
       sfx: true,
