@@ -113,7 +113,7 @@
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
 
-    ctx?.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
     ctx?.scale(dpr, dpr);
     
     window.windowSettings?.ctx.set(ctx);
