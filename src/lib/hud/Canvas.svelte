@@ -38,8 +38,6 @@
     loadedBgImage = await Promise.all(promises);
   }
 
-  
-
   function drawBg(img: HTMLImageElement, x: number, alpha: number): void {
     ctx.globalAlpha = alpha;
 
@@ -106,8 +104,8 @@
       return;
     }
 
-    width = window.windowSettings.width;
-    height = window.windowSettings.height;
+    width = window.innerWidth;
+    height = window.innerHeight;
     dpr = window.windowSettings.dpr;
 
     canvas.width = width * dpr;
@@ -115,8 +113,9 @@
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
 
-    ctx.imageSmoothingEnabled = false;
-    ctx.scale(dpr, dpr);
+    ctx?.imageSmoothingEnabled = false;
+    ctx?.scale(dpr, dpr);
+    
     window.windowSettings?.ctx.set(ctx);
 
     await load();
