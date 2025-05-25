@@ -64,7 +64,7 @@
 
 	onMount(async () => {
 		init();
-		await setupEntities();
+		//await setupEntities();
 		lastTime = performance.now();
 		loop(lastTime);
 	});
