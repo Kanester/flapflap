@@ -4,9 +4,9 @@
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
   
-  let dpr: number;
-  let width: number;
-  let height: number;
+  const width = window.windowSettings.width;
+  const height = window.windowSettings.height;
+  const dpr = window.windowSettings.dpr;
   
   let lastTime = 0;
   
@@ -105,10 +105,6 @@
       window.windowSettings?.ctx.set(null);
       return;
     }
-
-    width = window.windowSettings.width;
-    height = window.windowSettings.height;
-    dpr = window.windowSettings.dpr;
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
