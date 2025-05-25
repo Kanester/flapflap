@@ -1,18 +1,17 @@
 enum Difficulties {
-  easy,
-  normal,
-  hard
+	easy,
+	normal,
+	hard
 }
 
 enum Themes {
-  light,
-  dark
+	light,
+	dark
 }
 
 enum Contrast {
-  low,
-  normal,
-  high
+	normal,
+	high
 }
 
 export interface GameSettings {

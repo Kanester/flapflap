@@ -1,3 +1,5 @@
+
+
 enum States {
 	loading,
 	ready,
@@ -8,14 +10,7 @@ enum States {
 	restart
 }
 
-interface WindowSettings {
-	width: number;
-	height: number;
-	fps: number;
-}
-
 export interface State {
 	gameState: States;
 	score: number;
-	screen: WindowSettings;
 }
