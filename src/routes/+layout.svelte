@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { browser } from "$app/environment"
   import { writable, get } from 'svelte/store';
   
-  onMount(() => {
+  if (browser) {
     window.windowSettings ??= {
       width: 256,
       height: 368,
@@ -39,7 +39,7 @@
       reduceMotion: false,
       difficulty: "normal",
     };
-  });
+  }
 </script>
 
 <slot />
