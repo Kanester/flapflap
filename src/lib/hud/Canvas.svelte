@@ -83,6 +83,8 @@
 }
 
   function draw(): void {
+    if (!loadedBgImage.length || !loadedBaseImg) return;
+    
     ctx.clearRect(0, 0, width, height);
 
     if (fadeProcess > 0) {
@@ -96,6 +98,8 @@
   }
 
   function update(dt: number): void {
+    if (!loadedBgImage.length) return;
+    
     scrollX -= scrollSpeed * dt;
 
     timeSinceSwitch += dt;
