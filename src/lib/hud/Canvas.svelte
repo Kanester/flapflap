@@ -23,7 +23,7 @@
   const switchInterval = 10; // seconds
   let timeSinceSwitch = 0;
   
-  const bgImages = Array.from({ length: 9 }, (_, i) => window.assets.hud(`Background${i + 1}.png`));
+  const bgImages = Array.from({ length: 9 }, (_, i) => `assets/hud/bg/Background${i + 1}.png`);
   let loadedBgImage: HTMLImageElement[] = [];
 
   async function load(): Promise<void> {
@@ -129,12 +129,6 @@
   }
 
   onMount(() => {
-    window.assets ??= Object.freeze({
-      entity: (p: string) => `assets/entity/${p}`,
-      hud: (p: string) => `assets/hud/${p}`,
-      sfx: (p: string) => `assets/sfx/${p}`,
-    });
-    
     init();
   });
 </script>
