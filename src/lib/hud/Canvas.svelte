@@ -129,7 +129,16 @@
   }
 
   onMount(() => {
-    init();
+    if (!window.assets) {
+      const checkAssets = setInterval(() => {
+          if (window.assets) {
+            clearInterval(checkAssets);
+            initCanvas();
+          }
+      }, 50);
+    } else {
+      initCanvas();
+    }
   });
 </script>
 
