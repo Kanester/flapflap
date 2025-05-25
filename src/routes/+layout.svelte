@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { writable, get } from 'svelte/store';
-  import { windowSize } from "$lib/utils"
   
   onMount(() => {
-    const { width, height } = get(windowSize)
-    
     window.windowSettings ??= {
+      width: 256,
+      height: 368,
       fps: 60,
+      dpr: window.devicePixelRatio || 1,
       ctx: writable<CanvasRenderingContext2D | null>(null)
     }
 
@@ -18,8 +18,8 @@
 
     window.settings ??= Object.freeze({
       bird: {
-        startX: width / 2,
-        startY: height / 2,
+        startX: 256 / 2,
+        startY: 368 / 2,
         gravity: 250,
         flapForce: -100,
         maxFallSpeed: 250,
