@@ -4,10 +4,10 @@
   
   if (browser) {
     window.assets ??= {
-      hud: (p: string) => `assets/hud/`,
-      entity: (p: string) => `assets/hud/`,
-      bgx: (p: string) => `assets/hud/`,
-      sfx: (p: string) => `assets/hud/`
+      hud: (p: string) => `assets/hud/${p}`,
+      entity: (p: string) => `assets/hud/${p}`,
+      bgx: (p: string) => `assets/hud/${p}`,
+      sfx: (p: string) => `assets/hud/${p}`
     }
     
     window.windowSettings ??= {
