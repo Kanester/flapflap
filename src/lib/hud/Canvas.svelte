@@ -23,13 +23,14 @@
   const switchInterval = 10;
   let timeSinceSwitch = 0;
   
-  const bgImages = Array.from({ length: 9 }, (_, i) => window.assets.hud(`bg/Background${i + 1}.png`));
   let loadedBgImage: HTMLImageElement[] = [];
-  
-  const baseImg = window.assets.hud(`bg/base.png`)
   let loadedBaseImg: HTMLImageElement;
 
   async function load(): Promise<void> {
+    const bgImages = Array.from({ length: 9 }, (_, i) => window.assets.hud(`bg/Background${i + 1}.png`));
+    
+    const baseImg = window.assets.hud(`bg/base.png`);
+    
     const promises = bgImages.map((src) => {
       return new Promise<HTMLImageElement>((resolve) => {
         const img = new Image();
