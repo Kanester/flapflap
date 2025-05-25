@@ -6,7 +6,6 @@ import { WindowSettings } from '$lib/Screen';
 
 declare global {
 	interface Window {
-	  bgImage?: HTMLImageElement;
 		settings?: Settings;
 		assets?: Assets;
 		gameSettings?: GameSettings;
