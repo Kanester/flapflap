@@ -15,16 +15,19 @@
   
   let scrollX = 0;
   
-  const scrollSpeed = 20; // pixels per second
+  const scrollSpeed = 10;
   
   let fadeProcess = 0;
-  const fadeDuration = 2; // seconds
+  const fadeDuration = 2;
   
-  const switchInterval = 10; // seconds
+  const switchInterval = 10;
   let timeSinceSwitch = 0;
   
   const bgImages = Array.from({ length: 9 }, (_, i) => window.assets.hud(`bg/Background${i + 1}.png`));
   let loadedBgImage: HTMLImageElement[] = [];
+  
+  const baseImg = window.assets.hud(`bg/base.png`)
+  let loadedBaseImg: HTMLImageElement;
 
   async function load(): Promise<void> {
     const promises = bgImages.map((src) => {
@@ -34,8 +37,17 @@
         img.onload = () => resolve(img);
       });
     });
+    
+    const basePromise = new Promise<HTMLImageElement>((resolve) => {
+      const img = new Image();
+      img.src = baseImg;
+      img.onload = () => resolve(img);
+    })
 
-    loadedBgImage = await Promise.all(promises);
+    [loadedBgImage, loadedBaseImg] = await Promise.all([
+        Promise.all(promises),
+        basePromise
+      ]);
   }
 
   function drawBg(img: HTMLImageElement, x: number, alpha: number): void {
@@ -57,6 +69,18 @@
     ctx.globalAlpha = 1;
   }
 
+  function drawBase(img: HTMLImageElement): void {
+    const imgW = img.width;
+    const imgH = img.height;
+
+    const scale = width / imgW;
+    const drawW = width;
+    const drawH = imgH * scale;
+    const y = height - drawH;
+
+    ctx.drawImage(img, 0, y, drawW, drawH);
+}
+
   function draw(): void {
     ctx.clearRect(0, 0, width, height);
 
@@ -66,9 +90,11 @@
     } else {
       drawBg(loadedBgImage[current], scrollX, 1);
     }
+    
+    drawBase(loadedBaseImg);
   }
 
-  function update(dt: number) {
+  function update(dt: number): void {
     scrollX -= scrollSpeed * dt;
 
     timeSinceSwitch += dt;
