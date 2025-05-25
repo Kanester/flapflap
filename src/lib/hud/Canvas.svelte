@@ -4,9 +4,9 @@
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
   
-  const width = window.windowSettings.width;
-  const height = window.windowSettings.height;
-  const dpr = window.windowSettings.dpr;
+  let dpr: number;
+  let width: number;
+  let height: number;
   
   let lastTime = 0;
   
@@ -23,7 +23,7 @@
   const switchInterval = 10; // seconds
   let timeSinceSwitch = 0;
   
-  const bgImages = Array.from({ length: 9 }, (_, i) => `assets/hud/bg/Background${i + 1}.png`);
+  const bgImages = Array.from({ length: 9 }, (_, i) => window.assets.hud(`bg/Background${i + 1}.png`));
   let loadedBgImage: HTMLImageElement[] = [];
 
   async function load(): Promise<void> {
@@ -105,6 +105,10 @@
       window.windowSettings?.ctx.set(null);
       return;
     }
+
+    width = window.windowSettings.width;
+    height = window.windowSettings.height;
+    dpr = window.windowSettings.dpr;
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;

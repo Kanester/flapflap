@@ -3,6 +3,13 @@
   import { writable, get } from 'svelte/store';
   
   if (browser) {
+    window.assets ??= {
+      hud: (p: string) => `assets/hud/`,
+      entity: (p: string) => `assets/hud/`,
+      bgx: (p: string) => `assets/hud/`,
+      sfx: (p: string) => `assets/hud/`
+    }
+    
     window.windowSettings ??= {
       width: 256,
       height: 368,
