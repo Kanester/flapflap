@@ -27,9 +27,9 @@ export class Base extends Entity {
 		const imgW = this.loadedBase.width;
 		const imgH = this.loadedBase.height;
 
-		const scale = 368 / imgH;
+		const scale = 370 / imgH;
 		const drawW = imgW * scale;
-		const drawH = imgH * scale;
+		const drawH = imgH;
 
 		ctx.drawImage(this.loadedBase, this.x, this.y, drawW, drawH);
 	}
