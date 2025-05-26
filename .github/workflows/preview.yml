@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-vite-
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 10
 
@@ -50,7 +50,7 @@ jobs:
         run: pnpm build
 
       - name: Upload build directory
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: build/
 
