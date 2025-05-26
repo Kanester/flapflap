@@ -8,7 +8,7 @@ export class Background extends Entity {
 	scrollX = 0;
 	scrollSpeed = 2;
 	fadeDuration = 2;
-	switchInterval = 10;
+	switchInterval = 2;
 	timeSinceSwitch = 0;
 
 	constructor(x: number, y: number, z: number) {
