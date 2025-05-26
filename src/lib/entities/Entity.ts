@@ -1,4 +1,4 @@
-abstract class Entity {
+export abstract class Entity {
 	x: number;
 	y: number;
 	z: number;
@@ -10,11 +10,9 @@ abstract class Entity {
 	}
 
 	abstract load(): Promise<void>;
-
-	abstract update(dt: number): void;
-
 	abstract draw(ctx: CanvasRenderingContext2D): void;
-
+	abstract update(dt: number): void;
+	
 	onMount?(): void;
 	onDestroy?(): void;
 }

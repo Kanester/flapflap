@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from "svelte";
 	import type { Entity } from "$lib/entities/Entity";
-	//import { Background } from "$lib/entities/Background";
+	import { Background } from "$lib/entities/Background";
 	//import { Base } from "$lib/entities/Base";
 
 	let canvas: HTMLCanvasElement;
@@ -38,16 +38,16 @@
 
 		window.windowSettings.ctx.set(ctx);
 	}
-/*
+
 	async function setupEntities() {
-		const bg = new Background(0, 0, 0, "bg.png");
+		const bg = new Background(0, 0, 0);
 		const base = new Base(0, height - 50, 1, "base.png");
 
 		entities = [bg, base];
 		await Promise.all(entities.map(e => e.load()));
 		entities.forEach(e => e.onMount?.());
 	}
-*/
+
 	function loop(timestamp: number) {
 		const dt = (timestamp - lastTime) / 1000;
 		lastTime = timestamp;

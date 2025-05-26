@@ -1,6 +1,6 @@
 import { type Writable } from 'svelte/store';
 
-type AssetTypes = Exclude<keyof Assets, "getAssets">;
+type AssetTypes = Exclude<keyof Assets, 'getAssets'>;
 
 interface Assets {
 	ui: (p: string) => string;

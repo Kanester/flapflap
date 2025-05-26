@@ -11,7 +11,7 @@
       entity:(p: string) => `assets/entity/${p}`,
       bgx:   (p: string) => `assets/bgx/${p}`,
       sfx:   (p: string) => `assets/sfx/${p}`,
-      getAssets(type, path) {
+      getAssets(type: AssetType, path: string) {
         return this[type]?.(path) ?? path;
       }
     };
