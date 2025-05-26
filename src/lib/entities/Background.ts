@@ -56,6 +56,8 @@ export class Background extends Entity {
 	}
 
 	draw(ctx: CanvasRenderingContext2D): void {
+		if (!this.loadedBg.length) return;
+
 		ctx.clearRect(0, 0, window.gameSettings.width, window.gameSettings.height);
 
 		if (this.fadeProcess > 0) {
@@ -75,6 +77,8 @@ export class Background extends Entity {
 	}
 
 	update(dt: number): void {
+		if (!this.loadedBg.length) return;
+		
 		this.scrollX -= this.scrollSpeed * dt;
 		this.timeSinceSwitch += dt;
 
