@@ -68,6 +68,22 @@ jobs:
       - name: Capacitor sync
         run: pnpm cap sync android
 
+      - name: Set Version from version.json
+        run: |
+          VERSION_JSON=$(cat version.json)
+          MAJOR=$(echo $VERSION_JSON | jq -r '.major')
+          MINOR=$(echo $VERSION_JSON | jq -r '.minor')
+          PATCH=$(echo $VERSION_JSON | jq -r '.patch')
+
+          VERSION_NAME="$MAJOR.$MINOR.$PATCH"
+          VERSION_CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+
+          echo "Using versionName: $VERSION_NAME"
+          echo "Using versionCode: $VERSION_CODE"
+
+          sed -i "s/versionCode .*/versionCode $VERSION_CODE/" android/app/build.gradle
+          sed -i "s/versionName \".*\"/versionName \"$VERSION_NAME\"/" android/app/build.gradle
+
       - name: Build APK
         run: cd android && ./gradlew assembleRelease
 
