@@ -45,7 +45,7 @@ export class Background extends Entity {
 		const width = img.width;
 		const height = img.height;
 
-		const scale = window.windowSettings.height / height;
+		const scale = 368 / height;
 		const drawW = width * scale;
 		const drawH = height;
 
