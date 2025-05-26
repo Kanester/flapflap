@@ -59,8 +59,6 @@ export class Background extends Entity {
 	draw(ctx: CanvasRenderingContext2D): void {
 		if (!this.loadedBg.length) return;
 
-		ctx.clearRect(0, 0, window.windowSettings.width, window.windowSettings.height);
-
 		if (this.fadeProcess > 0) {
 			this.drawBg(
 				ctx,

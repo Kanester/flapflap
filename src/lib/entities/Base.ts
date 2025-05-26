@@ -23,25 +23,24 @@ export class Base extends Entity {
 	draw(ctx: CanvasRenderingContext2D): void {
 		if (!this.loadedBase) return;
 
-		ctx.clearRect(
-			0,
-			0,
-			window.windowSettings.width,
-			window.windowSettings.height
-		);
-
 		const imgW = this.loadedBase.width;
 		const imgH = this.loadedBase.height;
 
 		const scale = 368 / imgH;
 		const drawW = imgW * scale;
-		const drawH = imgH;
+		const drawH = imgH * scale;
 
 		ctx.drawImage(this.loadedBase, this.x, this.y, drawW, drawH);
 	}
 
 	update(dt: number): void {
 		if (!this.loadedBase) return;
+		
+		this.x -= speed * dt;
+		
+		if (this.x + this.loadedBase.width < 0) {
+		  this.x = window.windowSettings.width;
+		}
 	}
 
 	// onMount(): void {}
