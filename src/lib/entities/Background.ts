@@ -52,7 +52,7 @@ export class Background extends Entity {
 		let drawX = x % drawW;
 		if (drawX > 0) drawX -= drawW;
 
-		console.log(width, height, scale, drawW, drawH);
+		console.log(imgW, imgH, scale, drawW, drawH);
 
 		ctx.drawImage(img, drawX, 0, drawW, drawH);
 		ctx.drawImage(img, drawX + drawW, 0, drawW, drawH);
