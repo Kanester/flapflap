@@ -60,7 +60,7 @@
 			.sort((a, b) => a.z - b.z)
 			.forEach(e => e.draw(ctx));
 			
-		console.log(entities)
+	  //console.log(entities)
 
 		animationId = requestAnimationFrame(loop);
 	}

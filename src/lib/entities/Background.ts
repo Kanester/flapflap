@@ -29,7 +29,7 @@ export class Background extends Entity {
 			});
 		});
 
-		console.log('loading from bg');
+		//console.log('loading from bg');
 
 		this.loadedBg = await Promise.all(promises);
 	}
@@ -52,6 +52,8 @@ export class Background extends Entity {
 		let drawX = x % drawW;
 		if (drawX > 0) drawX -= drawW;
 
+		console.log(width, height, scale, drawW, drawH);
+
 		ctx.drawImage(img, drawX, 0, drawW, drawH);
 		ctx.drawImage(img, drawX + drawW, 0, drawW, drawH);
 
@@ -61,7 +63,7 @@ export class Background extends Entity {
 	draw(ctx: CanvasRenderingContext2D): void {
 		if (!this.loadedBg.length) return;
 
-		console.log('drawing from bg');
+		//console.log('drawing from bg');
 
 		ctx.clearRect(0, 0, window.gameSettings.width, window.gameSettings.height);
 
@@ -86,8 +88,8 @@ export class Background extends Entity {
 	update(dt: number): void {
 		if (!this.loadedBg.length) return;
 
-		console.log('updating from bg');
-		console.log(this.loadedBg);
+		//console.log('updating from bg');
+		//console.log(this.loadedBg);
 
 		this.scrollX -= this.scrollSpeed * dt;
 		this.timeSinceSwitch += dt;
