@@ -73,6 +73,8 @@ export class Background extends Entity {
 				this.scrollX,
 				this.fadeProcess
 			);
+		} else {
+		  this.drawBg(ctx, this.loadedBg[this.current], this.scrollX, 1)
 		}
 	}
 
