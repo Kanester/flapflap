@@ -42,12 +42,12 @@ export class Background extends Entity {
 	): void {
 		ctx.globalAlpha = a;
 
-		const width = img.width;
-		const height = img.height;
+		const imgW = img.width;
+		const imgH = img.height;
 
-		const scale = 368 / height;
-		const drawW = width * scale;
-		const drawH = height;
+		const scale = window.windowSettings.height / imgH;
+		const drawW = imgW * scale;
+		const drawH = imgH;
 
 		let drawX = x % drawW;
 		if (drawX > 0) drawX -= drawW;
