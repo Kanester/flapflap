@@ -2,7 +2,11 @@ import { Entity } from './Entity';
 
 export class Base extends Entity {
 	loadedBase: HTMLImageElement;
-	speed: number = 10;
+	speed: number = 60;
+
+	scale: number;
+	drawW: number;
+	drawH: number;
 
 	constructor(x: number, y: number, z: number) {
 		super(x, y, z);
@@ -19,19 +23,23 @@ export class Base extends Entity {
 		});
 
 		this.loadedBase = await promise;
+
+		this.scale = 256 / this.loadedBase.width;
+		this.drawW = this.loadedBase.width * this.scale;
+		this.drawH = this.loadedBase.height * this.scale;
 	}
 
 	draw(ctx: CanvasRenderingContext2D): void {
 		if (!this.loadedBase) return;
 
-		const imgW = this.loadedBase.width;
-		const imgH = this.loadedBase.height;
-
-		const scale = 370 / imgH;
-		const drawW = imgW * scale;
-		const drawH = imgH;
-
-		ctx.drawImage(this.loadedBase, this.x, this.y, drawW, drawH);
+		ctx.drawImage(this.loadedBase, this.x, this.y, this.drawW, this.drawH);
+		ctx.drawImage(
+			this.loadedBase,
+			this.x + this.drawW,
+			this.y,
+			this.drawW,
+			this.drawH
+		);
 	}
 
 	update(dt: number): void {
@@ -39,12 +47,8 @@ export class Base extends Entity {
 
 		this.x -= this.speed * dt;
 
-		if (this.x + this.loadedBase.width < 0) {
-			this.x = this.loadedBase.width * (370 / this.loadedBase.height);
+		if (this.x <= -this.drawW) {
+			this.x = 0;
 		}
 	}
-
-	// onMount(): void {}
-
-	// onDestroy(): void {}
 }
