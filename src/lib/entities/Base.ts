@@ -2,7 +2,7 @@ import { Entity } from './Entity';
 
 export class Base extends Entity {
 	loadedBase: HTMLImageElement;
-	speed: number = 60;
+	speed: number = 20;
 
 	scale: number;
 	drawW: number;
@@ -44,6 +44,7 @@ export class Base extends Entity {
 
 	update(dt: number): void {
 		if (!this.loadedBase) return;
+		console.log(-this.drawW);
 
 		this.x -= this.speed * dt;
 
