@@ -2,6 +2,7 @@ import { Entity } from './Entity';
 
 export class Base extends Entity {
 	loadedBase: HTMLImageElement;
+  speed: number = 10;
 
 	constructor(x: number, y: number, z: number) {
 		super(x, y, z);
@@ -35,11 +36,11 @@ export class Base extends Entity {
 
 	update(dt: number): void {
 		if (!this.loadedBase) return;
-		
-		this.x -= speed * dt;
-		
+
+		this.x -= this.speed * dt;
+
 		if (this.x + this.loadedBase.width < 0) {
-		  this.x = window.windowSettings.width;
+			this.x = window.windowSettings.width;
 		}
 	}
 
