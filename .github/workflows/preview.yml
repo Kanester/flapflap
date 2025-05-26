@@ -27,10 +27,11 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 10.11.0
-          run_install: true
 
       - name: Build the site
-        run: pnpm build
+        run: |
+          pnpm install
+          pnpm build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
