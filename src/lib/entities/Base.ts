@@ -1,6 +1,6 @@
 import { Entity } from './Entity';
 
-class Base extends Entity {
+export class Base extends Entity {
 	loadedBase: HTMLImageElement;
 
 	constructor(x: number, y: number, z: number) {
