@@ -24,7 +24,7 @@ export class Base extends Entity {
 
 		this.loadedBase = await promise;
 
-		this.scale = 260 / this.loadedBase.width;
+		this.scale = 370 / this.loadedBase.width;
 		this.drawW = this.loadedBase.width * this.scale;
 		this.drawH = this.loadedBase.height * this.scale;
 	}
