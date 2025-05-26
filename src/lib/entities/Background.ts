@@ -47,7 +47,7 @@ export class Background extends Entity {
 
 		const scale = window.windowSettings.height / imgH;
 		const drawW = imgW * scale;
-		const drawH = imgH;
+		const drawH = window.windowSettings.height;
 
 		let drawX = x % drawW;
 		if (drawX > 0) drawX -= drawW;
