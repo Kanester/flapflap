@@ -43,7 +43,7 @@ export class Background extends Entity {
 		const imgW = img.width;
 		const imgH = img.height;
 
-		const scale = 256 / imgH;
+		const scale = 368 / imgH;
 		const drawW = imgW * scale;
 		const drawH = window.windowSettings.height;
 
@@ -59,7 +59,7 @@ export class Background extends Entity {
 	draw(ctx: CanvasRenderingContext2D): void {
 		if (!this.loadedBg.length) return;
 
-		ctx.clearRect(0, 0, window.gameSettings.width, window.gameSettings.height);
+		ctx.clearRect(0, 0, window.windowSettings.width, window.windowSettings.height);
 
 		if (this.fadeProcess > 0) {
 			this.drawBg(
