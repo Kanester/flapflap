@@ -6,12 +6,12 @@
   if (browser) {
     // --- ASSETS ---
     window.assets ??= {
-      ui:    (p: string) => `assets/ui/${p}`,
-      bg:    (p: string) => `assets/bg/${p}`,
+      ui: (p: string) => `assets/ui/${p}`,
+      bg: (p: string) => `assets/bg/${p}`,
       entity:(p: string) => `assets/entity/${p}`,
-      bgx:   (p: string) => `assets/bgx/${p}`,
-      sfx:   (p: string) => `assets/sfx/${p}`,
-      getAssets(type: AssetType, path: string) {
+      bgx: (p: string) => `assets/bgx/${p}`,
+      sfx: (p: string) => `assets/sfx/${p}`,
+      getAssets(type, path) {
         return this[type]?.(path) ?? path;
       }
     };
@@ -19,20 +19,20 @@
     // --- WINDOW SETTINGS ---
     function initWindowSettings() {
       window.windowSettings = {
-        width:  window.innerWidth,
+        width: window.innerWidth,
         height: window.innerHeight,
-        fps:    60,
-        dpr:    window.devicePixelRatio || 1,
-        ctx:    writable<CanvasRenderingContext2D | null>(null)
+        fps: 60,
+        dpr: window.devicePixelRatio || 1,
+        ctx: writable<CanvasRenderingContext2D | null>(null)
       };
     }
 
     initWindowSettings();
 
     const onResize = () => {
-      window.windowSettings!.width  = window.innerWidth;
+      window.windowSettings!.width = window.innerWidth;
       window.windowSettings!.height = window.innerHeight;
-      window.windowSettings!.dpr    = window.devicePixelRatio || 1;
+      window.windowSettings!.dpr = window.devicePixelRatio || 1;
     };
     window.addEventListener('resize', onResize);
 

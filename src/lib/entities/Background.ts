@@ -17,7 +17,7 @@ export class Background extends Entity {
 
 	async load(): Promise<void> {
 		const bg = Array.from({ length: 9 }, (_, i) =>
-			window.gameSettings.bg(`Background${i + 1}.png`)
+			window.gameSettings.getAssets('bg', `Background${i + 1}.png`)
 		);
 
 		const promises = bg.map(src => {

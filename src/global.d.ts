@@ -82,3 +82,5 @@ declare global {
 		gameSettings?: GameSettings;
 	}
 }
+
+export {}
