@@ -44,7 +44,7 @@
 		//const base = new Base(0, height - 50, 1, "base.png");
 
 		entities = [bg]; //[bg, base];
-		console.log(entities)
+		
 		await Promise.all(entities.map(e => e.load()));
 		entities.forEach(e => e.onMount?.());
 	}
@@ -60,8 +60,6 @@
 			.sort((a, b) => a.z - b.z)
 			.forEach(e => e.draw(ctx));
 			
-	  //console.log(entities)
-
 		animationId = requestAnimationFrame(loop);
 	}
 
