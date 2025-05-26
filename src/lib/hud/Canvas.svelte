@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from "svelte";
 	import type { Entity } from "$lib/entities/Entity";
 	import { Background } from "$lib/entities/Background";
-	//import { Base } from "$lib/entities/Base";
+	import { Base } from "$lib/entities/Base";
 
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
@@ -41,9 +41,9 @@
 
 	async function setupEntities() {
 		const bg = new Background(0, 0, 0);
-		//const base = new Base(0, height - 50, 1, "base.png");
+		const base = new Base(0, height - 50, 1, "base.png");
 
-		entities = [bg]; //[bg, base];
+		entities = [bg, base];
 		
 		await Promise.all(entities.map(e => e.load()));
 		entities.forEach(e => e.onMount?.());
