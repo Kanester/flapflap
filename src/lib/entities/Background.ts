@@ -32,6 +32,7 @@ export class Background extends Entity {
 		console.log("loading from bg")
 
 		this.loadedBg = await Promise.all(promises);
+		console.lpg(this.loadedBg)
 	}
 
 	drawBg(
