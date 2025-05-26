@@ -6,7 +6,7 @@ export class Background extends Entity {
 	current = 0;
 	next = 1;
 	scrollX = 0;
-	scrollSpeed = 10;
+	scrollSpeed = 2;
 	fadeDuration = 2;
 	switchInterval = 10;
 	timeSinceSwitch = 0;
