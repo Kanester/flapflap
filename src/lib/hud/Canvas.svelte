@@ -41,9 +41,9 @@
 
 	async function setupEntities() {
 		const bg = new Background(0, 0, 0);
-		const base = new Base(0, height - 50, 1, "base.png");
+		//const base = new Base(0, height - 50, 1, "base.png");
 
-		entities = [bg, base];
+		entities = [bg]; //[bg, base];
 		await Promise.all(entities.map(e => e.load()));
 		entities.forEach(e => e.onMount?.());
 	}
@@ -52,26 +52,26 @@
 		const dt = (timestamp - lastTime) / 1000;
 		lastTime = timestamp;
 
-		//entities.forEach(e => e.update(dt));
+		entities.forEach(e => e.update(dt));
 
 		ctx.clearRect(0, 0, width, height);
-		/*entities
+		entities
 			.sort((a, b) => a.z - b.z)
 			.forEach(e => e.draw(ctx));
-*/
+
 		animationId = requestAnimationFrame(loop);
 	}
 
 	onMount(async () => {
 		init();
-		//await setupEntities();
+		await setupEntities();
 		lastTime = performance.now();
 		loop(lastTime);
 	});
 
 	onDestroy(() => {
 		cancelAnimationFrame(animationId);
-		//entities.forEach(e => e.onDestroy?.());
+		entities.forEach(e => e.onDestroy?.());
 	});
 </script>
 
