@@ -51,7 +51,7 @@ export class Background extends Entity {
 		if (drawX > 0) drawX -= drawW;
 
 		ctx.drawImage(img, drawX, 0, drawW, drawH);
-		ctx.drawImage(img, drawX + drawW, 0, drawW, drawH);
+		ctx.drawImage(img, drawX + drawW, this.y, drawW, drawH);
 
 		ctx.globalAlpha = 1;
 	}

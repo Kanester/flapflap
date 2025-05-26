@@ -37,7 +37,7 @@ export class Base extends Entity {
 		const drawW = imgW * scale;
 		const drawH = imgH;
 
-		ctx.drawImage(this.loadedBase, 0, 0, drawW, drawH);
+		ctx.drawImage(this.loadedBase, this.x, this.y, drawW, drawH);
 	}
 
 	update(dt: number): void {
