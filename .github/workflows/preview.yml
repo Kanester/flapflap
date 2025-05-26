@@ -30,6 +30,8 @@ jobs:
           cache: 'pnpm'
 
       - name: Build the site
+        env:
+          BUILD_TARGET: web
         run: |
           pnpm install
           pnpm build
