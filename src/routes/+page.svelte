@@ -63,7 +63,7 @@
     ]);
     
     loadAudio([
-      getPath("bgx", "After_all.mp3")
+      getPath("bgx", "After_All.mp3")
     ])
     
     loop(lastime);
