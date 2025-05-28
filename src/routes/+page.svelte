@@ -40,7 +40,7 @@
     
     context.clearRect(0, 0, canvasW, canvasH);
     
-    requestAnimationId(loop);
+    requestAnimationFrame(loop);
   }
   
   function getPath(isType: string, name: string) {
