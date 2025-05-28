@@ -47,9 +47,9 @@
     return `assets/${isType}/${name}`;
   }
   
-  onMount(async () => {
+  onMount(() => {
     init();
-    await loadImg([
+    loadImg([
       getPath("bg", "Background1.png"),
       getPath("bg", "Background2.png"),
       getPath("bg", "Background3.png"),
@@ -62,7 +62,7 @@
       getPath("bg", "base.png")
     ]);
     
-    await loadAudio([
+    loadAudio([
       getPath("bgx", "After_all.mp3")
     ])
     
