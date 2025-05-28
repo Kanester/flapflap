@@ -55,10 +55,6 @@
       getPath("bg", "Background3.png"),
       getPath("bg", "Background4.png"),
       getPath("bg", "Background5.png"),
-      getPath("bg", "Background6.png"),
-      getPath("bg", "Background7.png"),
-      getPath("bg", "Background8.png"),
-      getPath("bg", "Background9.png"),
       getPath("bg", "base.png")
     ]);
     
