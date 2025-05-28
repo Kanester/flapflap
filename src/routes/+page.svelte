@@ -12,17 +12,17 @@
   let animationId: number;
   
   function init(): void {
-    context = canvas.getContext('2D');
+    context = canvas.getContext('2d');
     
     if (!context) {
       console.error("[*] 2D Canvas is not support by the current browser!");
-      window.windowSettings.ctx.set(null);
+      window.gameWindow.ctx.set(null);
       return;
     }
     
-    canvasW = window.windowSettings.width;
-    canvasH = window.windowSettings.height;
-    dpr = window.windowSettings.dpr;
+    canvasW = window.innerWidth;
+    canvasH = window.innerHeight;
+    dpr = window.gameWindow.dpr;
     
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -31,7 +31,7 @@
     
     context.imageSmoothingEnabled = false;
     context.scale(dpr, dpr);
-    window.windowSettings.ctx.set(context)
+    window.gameWindow.ctx.set(context)
   }
   
   function loop(now: number, entities: () => Promise<void>) {
