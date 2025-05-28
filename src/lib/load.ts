@@ -12,7 +12,7 @@ export async function loadEntities(entities: Entity[]): Promise<any[]> {
 	return result;
 }
 
-async function loadImg(imgPaths: string[]) {
+export async function loadImg(imgPaths: string[]) {
 	let assets: Record<string, HTMLImageElement> = {};
 
 	const promises = imgPaths.map(src => {
@@ -32,7 +32,7 @@ async function loadImg(imgPaths: string[]) {
 	window.gameAssets.image = assets;
 }
 
-async function loadAudio(audioPaths: string[]) {
+export async function loadAudio(audioPaths: string[]) {
 	let assets: Record<string, HTMLAudioElement> = {};
 
 	const promises = audioPaths.map(path => {
