@@ -47,7 +47,7 @@
     return `assets/${isType}/${name}`;
   }
   
-  onMount(() => {
+  onMount(async () => {
     init();
     await loadImg([
       getPath("bg", "Background1.png"),
