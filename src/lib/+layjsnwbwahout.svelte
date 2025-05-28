@@ -29,13 +29,6 @@
 
     initWindowSettings();
 
-    const onResize = () => {
-      window.windowSettings!.width = window.innerWidth;
-      window.windowSettings!.height = window.innerHeight;
-      window.windowSettings!.dpr = window.devicePixelRatio || 1;
-    };
-    window.addEventListener('resize', onResize);
-
     // --- GAME STATE & SETTINGS ---
     window.state ??= {
       gameState: 0,

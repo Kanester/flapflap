@@ -16,10 +16,39 @@ export class Background extends Entity {
 		super(x, y, z);
 	}
 
-	
+	getPath(isType: string) {
+		return window.gameAssets.image[`assets/bg/${isType}`];
+	}
 
 	async load(): Promise<void> {
-		this.loadBg();
+		const bg = [
+			'Background1.png',
+			'Background2.png',
+			'Background3.png',
+			'Background4.png',
+			'Background5.png'
+		];
+
+		this.loadedBg = bg.map(src => this.getPath(src));
+		this.loadedBase = this.getPath('base.png');
+
+		if (!this.loadedBg.every(Boolean) || !this.loadedBase)
+			console.error('[!] Some background/s are failed to load!');
+	}
+
+	drawBase(ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number) {
+		const imgW = img.width;
+		const imgH = img.height;
+
+		const scale = window.gameWindow.targetW / imgW;
+		const drawW = imgW * scale;
+		const drawH = imgH * scale;
+
+		let drawX = x % drawW;
+		if (drawX > 0) drawX -= drawW;
+
+		ctx.drawImage(img, drawX, window.innerHeight - 50, drawW, drawH);
+		ctx.drawImage(img, drawX + drawW, window.innerHeight - 50, drawW, drawH);
 	}
 
 	drawBg(
@@ -33,21 +62,23 @@ export class Background extends Entity {
 		const imgW = img.width;
 		const imgH = img.height;
 
-		const scale = 370 / imgH;
+		const scale = window.gameWindow.targetH / imgH;
 		const drawW = imgW * scale;
 		const drawH = window.windowSettings.height;
+		const baseY = (drawH - 50) * scale;
 
 		let drawX = x % drawW;
 		if (drawX > 0) drawX -= drawW;
 
-		ctx.drawImage(img, drawX, 0, drawW, drawH);
-		ctx.drawImage(img, drawX + drawW, this.y, drawW, drawH);
+		ctx.drawImage(img, drawX, baseY, drawW, drawH);
+		ctx.drawImage(img, drawX + drawW, baseY, drawW, drawH);
 
 		ctx.globalAlpha = 1;
 	}
 
 	draw(ctx: CanvasRenderingContext2D): void {
 		if (!this.loadedBg.length) return;
+		if (!this.loadedBase) return;
 
 		if (this.fadeProcess > 0) {
 			this.drawBg(
@@ -65,10 +96,13 @@ export class Background extends Entity {
 		} else {
 			this.drawBg(ctx, this.loadedBg[this.current], this.scrollX, 1);
 		}
+
+		this.drawBase(ctx, this.loadedBase, this.scrollX);
 	}
 
 	update(dt: number): void {
 		if (!this.loadedBg.length) return;
+		if (!this.loadedBase) return;
 
 		this.scrollX -= this.scrollSpeed * dt;
 		this.timeSinceSwitch += dt;
