@@ -15,12 +15,20 @@
   let animationId: number;
   
   let entities: Entity[] = []
+  let resizeTimeout: number;
   
   function getPath(type: string, name: string) {
     return `assets/${type}/${name}`;
   }
   
+  function handleResize() {
+    window.gameWindow.canvasW = window.innerWidth;
+    window.gameWindow.canvasH = window.innerHeight;
+    window.gameWindow.dpr = window.devicePixelRatio || 1;
+  }
+  
   function init(): void {
+    handleResize();
     context = canvas.getContext('2d');
     
     if (!context) {
@@ -29,8 +37,9 @@
       return;
     }
     
-    onResize();
-    dpr = window.gameWindow!.dpr;
+    canvasW = window.gameWindow.canvasW;
+    canvasH = window.gameWindow.canvasH;
+    dpr = window.gameWindow.dpr;
 
     canvas.width = canvasW * dpr;
     canvas.height = canvasH * dpr;
@@ -38,17 +47,18 @@
     canvas.style.height = `${canvasH}px`;
 
     context.imageSmoothingEnabled = false;
+    context.setTransform(1, 0, 0, 1, 0, 0)
     context.scale(dpr, dpr);
     
     window.gameWindow.ctx.set(context);
   }
   
-  function setup() {
+  async function setup() {
     const bg = new Background(0, 0, 0);
     
     entities = [bg];
     
-    loadEntities(entities);
+    await loadEntities(entities);
   }
   
   function loop(now: number) {
@@ -66,15 +76,15 @@
   }
   
   const onResize = () => {
-    canvasW = window.innerWidth;
-    canvasH = window.innerHeight;
-    window.gameWindow!.dpr = window.devicePixelRatio || 1;
-    
-    init();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      lastime = performance.now();
+      init();
+    }, 300);
   };
   
-  onMount(() => {
-    init();
+  onMount(async () => {
+    onResize();
 
     loadImg([
       getPath("bg", "Background1.png"),
@@ -89,7 +99,7 @@
       getPath("bgx", "After_All.mp3")
     ]);
     
-    setup();
+    await setup();
 
     window.addEventListener('resize', onResize);
 
@@ -99,6 +109,7 @@
   onDestroy(() => {
     window.removeEventListener('resize', onResize);
     cancelAnimationFrame(animationId);
+    clearTimeout(resizeTimeout)
   });
 </script>
 

@@ -83,7 +83,8 @@ interface Assets {
 interface GameWindow {
 	targetW: number;
 	targetH: number;
-	targetFps: number;
+	canvasW: number;
+	canvasH: number;
 	dpr: number;
 	ctx: Writable<CanvasRenderingContext2D | null>;
 }

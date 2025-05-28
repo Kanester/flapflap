@@ -12,7 +12,8 @@ if (browser) {
 	window.gameWindow = {
 		targetW: 260, //256
 		targetH: 370, //368
-		targetFps: 60,
+		canvasW: window.innerWidth,
+		canvasH: window.innerHeight,
 		dpr: window.devicePixelRatio || 1,
 		ctx: writable<CanvasRenderingContext2D | null>(null)
 	};
