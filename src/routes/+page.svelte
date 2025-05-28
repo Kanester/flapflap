@@ -37,7 +37,7 @@
   function loop(now: number, entities: () => Promise<void>) {
     const dt = (now - lastime) / 1000;
     
-    ctx.clearRect(0, 0, height, width);
+    ctx.clearRect(0, 0, canvasW, canvasH);
     
     requestAnimationId(loop);
   }
