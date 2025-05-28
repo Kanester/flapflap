@@ -32,6 +32,10 @@ export class Background extends Entity {
 		this.loadedBg = bg.map(src => this.getPath(src));
 		this.loadedBase = this.getPath('base.png');
 
+		console.log(this.loadedBg);
+		console.log(this.loadedBase);
+		
+
 		if (!this.loadedBg.every(Boolean) || !this.loadedBase)
 			console.error('[!] Some background/s are failed to load!');
 	}
