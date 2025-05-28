@@ -1,5 +1,6 @@
 import { type Writable } from 'svelte/store';
 
+/*
 type AssetTypes = Exclude<keyof Assets, 'getAssets'>;
 
 interface Assets {
@@ -72,15 +73,26 @@ export interface WindowSettings {
 	dpr: number;
 	ctx: Writable<CanvasRenderingContext2D | null>;
 }
+*/
+
+interface Assets {
+	image: Record<string, HTMLImageElement>;
+	audio: Record<string, HTMLAudioElement>;
+}
+
+interface GameWindow {
+	targetW: number;
+	targetH: number;
+	targetFps: number;
+	dpr: number;
+	ctx: Writable<CanvasRenderingContext2D | null>;
+}
 
 declare global {
 	interface Window {
-		windowSettings?: WindowSettings;
-		assets: Assets;
-		state?: State;
-		settings?: Settings;
-		gameSettings?: GameSettings;
+		gameAssets: Assets;
+		gameWindow: GameWindow;
 	}
 }
 
-export {}
+export {};

@@ -1,7 +1,8 @@
-import { Entity } from './Entity';
+import { Entity } from '../Entity';
 
 export class Background extends Entity {
 	loadedBg: HTMLImageElement[] = [];
+	loadedBase: HTMLImageElement;
 	fadeProcess: number = 0;
 	current = 0;
 	next = 1;
@@ -15,21 +16,10 @@ export class Background extends Entity {
 		super(x, y, z);
 	}
 
+	
+
 	async load(): Promise<void> {
-		const bg = Array.from({ length: 9 }, (_, i) =>
-			window.assets.getAssets('bg', `Background${i + 1}.png`)
-		);
-
-		const promises = bg.map(src => {
-			return new Promise<HTMLImageElement>((resolve, reject) => {
-				const img = new Image();
-				img.src = src;
-				img.onload = () => resolve(img);
-				img.onerror = () => reject();
-			});
-		});
-
-		this.loadedBg = await Promise.all(promises);
+		this.loadBg();
 	}
 
 	drawBg(
