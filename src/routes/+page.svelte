@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
+  import { loadImg, loadAudio } from "$lib/load";
   
   let canvas: HTMLCanvasElement;
   let context: CanvasRenderingContext2D;
@@ -24,10 +25,10 @@
     canvasH = window.innerHeight;
     dpr = window.gameWindow.dpr;
     
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    canvas.width = canvasW * dpr;
+    canvas.height = canvasH * dpr;
+    canvas.style.width = `${canvasW}px`;
+    canvas.style.height = `${canvasH}px`;
     
     context.imageSmoothingEnabled = false;
     context.scale(dpr, dpr);
@@ -42,8 +43,29 @@
     requestAnimationId(loop);
   }
   
+  function getPath(isType: string, name: string) {
+    return `assets/${isType}/${name}`;
+  }
+  
   onMount(() => {
     init();
+    loadImg([
+      getPath("bg", "Background1.png"),
+      getPath("bg", "Background2.png"),
+      getPath("bg", "Background3.png"),
+      getPath("bg", "Background4.png"),
+      getPath("bg", "Background5.png"),
+      getPath("bg", "Background6.png"),
+      getPath("bg", "Background7.png"),
+      getPath("bg", "Background8.png"),
+      getPath("bg", "Background9.png"),
+      getPath("bg", "base.png");
+    ]);
+    
+    loadAudio([
+      getPath("bgx", "After_all.mp3")
+    ])
+    
     loop(lastime);
   })
   
