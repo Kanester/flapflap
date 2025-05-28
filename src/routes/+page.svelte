@@ -59,7 +59,7 @@
       getPath("bg", "Background7.png"),
       getPath("bg", "Background8.png"),
       getPath("bg", "Background9.png"),
-      getPath("bg", "base.png");
+      getPath("bg", "base.png")
     ]);
     
     loadAudio([
